@@ -1,5 +1,22 @@
 # depslib dependency file v1.0
-1557929682 source:c:\users\zach\documents\repos\keylogger\main.cpp
+1557937831 source:c:\users\zach\documents\repos\keylogger\main.cpp
 	<iostream>
 	<windows.h>
+	"Helper.h"
+	"KeyConstants.h"
+	"Base64.h"
+
+1557938822 c:\users\zach\documents\repos\keylogger\helper.h
+	<ctime>
+	<string>
+	<sstream>
+	<fstream>
+
+1557938903 c:\users\zach\documents\repos\keylogger\keyconstants.h
+	<map>
+	<string>
+
+1557938068 c:\users\zach\documents\repos\keylogger\base64.h
+	<vector>
+	<string>
 

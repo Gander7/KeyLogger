@@ -18,7 +18,7 @@ namespace BASE64
         s = base64_encode(s);
         s.insert(7, SALT3);
         s += SALT1;
-        s = base_64_encode(s);
+        s = base64_encode(s);
         s += SALT2 + SALT3 + SALT1;
         s = base64_encode(s);
         s.insert(1, "L");
@@ -40,7 +40,7 @@ namespace BASE64
         {
             val = (val << 8) + c; // same as val = (val * 2^8) + c
             bits += 8;
-            while(bits > = 0)
+            while(bits >= 0)
             {
                 // & -> 101 & 011 = 001
                 ret.push_back(BASE64_CODES[(val >> bits) & b63]);

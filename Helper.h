@@ -4,15 +4,17 @@
 #include <ctime>
 #include <string>
 #include <sstream>
+#include <fstream>
 
-namespace HELPER_H
+namespace Helper
 {
     template <class T>
-
-    std::string ToString(const T &)
+    std::string ToString (const T &);
 
     struct DateTime
     {
+        int D, m, y, M, H, S;
+
         DateTime()
         {
             time_t ms;
@@ -20,7 +22,7 @@ namespace HELPER_H
 
             struct tm *info = localtime(&ms);
             D = info->tm_mday;
-            m = info->tm_month + 1;
+            m = info->tm_mon + 1;
             y = 1900 + info->tm_year;
             M = info->tm_min;
             H = info->tm_hour;
@@ -29,20 +31,18 @@ namespace HELPER_H
         DateTime(int D, int m, int y, int M, int H, int S)
             : D(D), m(m), y(y), M(M), H(H), S(S) {}
         DateTime(int D, int m, int y)
-            : D(D), m(m), y(y), M(0), H(0), S(0)
+            : D(D), m(m), y(y), M(0), H(0), S(0) {}
 
         DateTime Now() const
         {
             return DateTime();
         }
 
-        int D, m, y, M, H, S;
-
         std::string GetDateString() const
         {
             return ToString(y) + "-" +
-                    std::string( m < 10 ? "0" : "") + ToString(m) + "-" +
-                    std:string( D < 10 ? "0" : "") + ToString(D);
+                    std::string((m < 10) ? "0" : "") + ToString(m) + "-" +
+                    std::string((D < 10) ? "0" : "") + ToString(D);
         }
 
         std::string GetTimeString(const std::string &sep= ":") const
@@ -69,9 +69,8 @@ namespace HELPER_H
 
     void WriteAppLog(const std::string &s)
     {
-        std::ofstream file("AppLog.txt", std::ios:app);
-        file << "[" << Helper::DateTime.GetDateTimeString() << "]"
-             << "\n" << s << std::endl << "\n";
+        std::ofstream file("AppLog.txt", std::ios::app);
+        file << "[" << Helper::DateTime().GetDateTimeString() << "]" << "\n" << s << std::endl << "\n";
         file.close();
     }
 }
